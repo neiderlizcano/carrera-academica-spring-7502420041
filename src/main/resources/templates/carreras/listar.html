@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Carreras Académicas</title>
+</head>
+<body>
+
+<h1>Listado de Carreras Académicas</h1>
+
+<a th:href="@{/carreras/agregar}">Agregar carrera académica</a>
+<br><br>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Nivel de formación</th>
+        <th>Título</th>
+        <th>Universidad</th>
+        <th>Valor semestre</th>
+        <th>Acreditada</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="carrera : ${carreras}">
+        <td th:text="${carrera.id}"></td>
+        <td th:text="${carrera.nombre}"></td>
+        <td th:text="${carrera.nivelFormacion}"></td>
+        <td th:text="${carrera.titulo}"></td>
+        <td th:text="${carrera.universidad}"></td>
+        <td th:text="${carrera.valorSemestre}"></td>
+        <td th:text="${carrera.esAcreditada ? 'Sí' : 'No'}"></td>
+        <td>
+            <a th:href="@{/carreras/ver/{id}(id=${carrera.id})}">Ver</a>
+            |
+            <a th:href="@{/carreras/editar/{id}(id=${carrera.id})}">Editar</a>
+            |
+            <a th:href="@{/carreras/eliminar/{id}(id=${carrera.id})}"
+               onclick="return confirm('¿Está seguro de eliminar esta carrera académica?')">
+                Eliminar
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<a th:href="@{/usuarios}">Ir a usuarios</a>
+
+</body>
+</html>

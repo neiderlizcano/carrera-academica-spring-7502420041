@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de Carrera Académica</title>
+</head>
+<body>
+
+<h1>Detalle de Carrera Académica</h1>
+
+<p><strong>ID:</strong> <span th:text="${carrera.id}"></span></p>
+<p><strong>Nombre:</strong> <span th:text="${carrera.nombre}"></span></p>
+<p><strong>Número de créditos:</strong> <span th:text="${carrera.numCreditos}"></span></p>
+<p><strong>Número de asignaturas:</strong> <span th:text="${carrera.numAsignaturas}"></span></p>
+<p><strong>Número de semestres:</strong> <span th:text="${carrera.numSemestres}"></span></p>
+<p><strong>Nivel de formación:</strong> <span th:text="${carrera.nivelFormacion}"></span></p>
+<p><strong>Título otorgado:</strong> <span th:text="${carrera.titulo}"></span></p>
+<p><strong>Valor del semestre:</strong> <span th:text="${carrera.valorSemestre}"></span></p>
+<p><strong>Universidad:</strong> <span th:text="${carrera.universidad}"></span></p>
+<p><strong>Acreditada:</strong> <span th:text="${carrera.esAcreditada ? 'Sí' : 'No'}"></span></p>
+<p><strong>Perfiles:</strong> <span th:text="${carrera.perfiles}"></span></p>
+<p><strong>Área de conocimiento:</strong> <span th:text="${carrera.areaConocimiento}"></span></p>
+
+<br>
+
+<a th:href="@{/carreras/editar/{id}(id=${carrera.id})}">Editar</a>
+|
+<a th:href="@{/carreras}">Volver al listado</a>
+
+</body>
+</html>

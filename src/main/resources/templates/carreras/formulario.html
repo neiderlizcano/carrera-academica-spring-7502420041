@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Carrera Académica</title>
+</head>
+<body>
+
+<h1>Formulario de Carrera Académica</h1>
+
+<form th:action="@{/carreras/guardar}" th:object="${carrera}" method="post">
+
+    <input type="hidden" th:field="*{id}">
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" th:field="*{nombre}" required>
+    <br><br>
+
+    <label for="numCreditos">Número de créditos:</label>
+    <input type="number" id="numCreditos" th:field="*{numCreditos}" required>
+    <br><br>
+
+    <label for="numAsignaturas">Número de asignaturas:</label>
+    <input type="number" id="numAsignaturas" th:field="*{numAsignaturas}" required>
+    <br><br>
+
+    <label for="numSemestres">Número de semestres:</label>
+    <input type="number" id="numSemestres" th:field="*{numSemestres}" required>
+    <br><br>
+
+    <label for="nivelFormacion">Nivel de formación:</label>
+    <input type="text" id="nivelFormacion" th:field="*{nivelFormacion}" required>
+    <br><br>
+
+    <label for="titulo">Título otorgado:</label>
+    <input type="text" id="titulo" th:field="*{titulo}" required>
+    <br><br>
+
+    <label for="valorSemestre">Valor del semestre:</label>
+    <input type="number" step="0.01" id="valorSemestre" th:field="*{valorSemestre}" required>
+    <br><br>
+
+    <label for="universidad">Universidad:</label>
+    <input type="text" id="universidad" th:field="*{universidad}" required>
+    <br><br>
+
+    <label for="esAcreditada">¿Es acreditada?</label>
+    <select id="esAcreditada" th:field="*{esAcreditada}" required>
+        <option th:value="true">Sí</option>
+        <option th:value="false">No</option>
+    </select>
+    <br><br>
+
+    <label for="perfiles">Perfiles:</label>
+    <textarea id="perfiles" th:field="*{perfiles}" rows="4" cols="40"></textarea>
+    <br><br>
+
+    <label for="areaConocimiento">Área de conocimiento:</label>
+    <input type="text" id="areaConocimiento" th:field="*{areaConocimiento}" required>
+    <br><br>
+
+    <button type="submit">Guardar</button>
+    <a th:href="@{/carreras}">Cancelar</a>
+
+</form>
+
+</body>
+</html>
