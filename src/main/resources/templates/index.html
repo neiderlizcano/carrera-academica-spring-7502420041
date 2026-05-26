@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Sistema Académico</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+<div class="barra-superior">
+    <a th:href="@{/}">Inicio</a>
+    <a th:href="@{/usuarios}">Usuarios</a>
+    <a th:href="@{/carreras}">Carreras académicas</a>
+</div>
+
+<div class="hero">
+    <h1>Sistema Académico MVC</h1>
+    <p>Gestión de usuarios y carreras académicas</p>
+</div>
+
+<div class="contenedor-principal">
+    <div class="tarjeta">
+
+        <h2>Panel principal</h2>
+        <p class="subtitulo">
+            Seleccione el módulo que desea administrar dentro del sistema.
+        </p>
+
+        <div class="botones">
+            <a class="boton boton-azul" th:href="@{/usuarios}">
+                Gestionar usuarios
+            </a>
+
+            <a class="boton boton-verde" th:href="@{/carreras}">
+                Gestionar carreras académicas
+            </a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
