@@ -2,8 +2,10 @@ package com.neider.carreraacademica.controladores;
 
 import com.neider.carreraacademica.modelo.Usuario;
 import com.neider.carreraacademica.servicio.IUsuarioServicio;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -29,7 +31,13 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/guardar")
-    public String guardarUsuario(@ModelAttribute Usuario usuario) {
+    public String guardarUsuario(@Valid @ModelAttribute("usuario") Usuario usuario,
+                                 BindingResult resultado) {
+
+        if (resultado.hasErrors()) {
+            return "usuarios/formulario";
+        }
+
         usuarioServicio.guardarUsuario(usuario);
         return "redirect:/usuarios";
     }
