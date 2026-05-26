@@ -35,4 +35,10 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
     public void eliminarUsuario(String cedula) {
         usuarioDao.deleteById(cedula);
     }
+
+    @Override
+    public Optional<Usuario> validarLogin(String email, String clave) {
+        return usuarioDao.findByEmailAndClave(email, clave);
+    }
+
 }
