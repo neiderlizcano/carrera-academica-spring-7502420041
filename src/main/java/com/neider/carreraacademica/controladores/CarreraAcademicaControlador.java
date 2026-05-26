@@ -2,8 +2,10 @@ package com.neider.carreraacademica.controladores;
 
 import com.neider.carreraacademica.modelo.CarreraAcademica;
 import com.neider.carreraacademica.servicio.ICarreraAcademicaServicio;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -29,7 +31,13 @@ public class CarreraAcademicaControlador {
     }
 
     @PostMapping("/guardar")
-    public String guardarCarrera(@ModelAttribute CarreraAcademica carreraAcademica) {
+    public String guardarCarrera(@Valid @ModelAttribute("carrera") CarreraAcademica carreraAcademica,
+                                 BindingResult resultado) {
+
+        if (resultado.hasErrors()) {
+            return "carreras/formulario";
+        }
+
         carreraAcademicaServicio.guardarCarrera(carreraAcademica);
         return "redirect:/carreras";
     }
