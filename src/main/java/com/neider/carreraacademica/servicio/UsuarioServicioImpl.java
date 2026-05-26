@@ -41,4 +41,20 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         return usuarioDao.findByEmailAndClave(email, clave);
     }
 
+    @Override
+    public Optional<Usuario> buscarUsuarioPorEmail(String email) {
+        return usuarioDao.findByEmail(email);
+    }
+
+    @Override
+    public void actualizarClave(String email, String nuevaClave) {
+        Optional<Usuario> usuarioOptional = usuarioDao.findByEmail(email);
+
+        if (usuarioOptional.isPresent()) {
+            Usuario usuario = usuarioOptional.get();
+            usuario.setClave(nuevaClave);
+            usuarioDao.save(usuario);
+        }
+    }
+
 }

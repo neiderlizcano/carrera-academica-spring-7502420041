@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface IUsuarioDao extends CrudRepository<Usuario, String> {
 
     Optional<Usuario> findByEmailAndClave(String email, String clave);
+
+    Optional<Usuario> findByEmail(String email);
 }

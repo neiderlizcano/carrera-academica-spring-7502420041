@@ -16,4 +16,8 @@ public interface IUsuarioServicio {
     void eliminarUsuario(String cedula);
 
     Optional<Usuario> validarLogin(String email, String clave);
+
+    Optional<Usuario> buscarUsuarioPorEmail(String email);
+
+    void actualizarClave(String email, String nuevaClave);
 }

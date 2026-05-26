@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recuperar contraseña</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+<div class="barra-superior">
+    <a th:href="@{/login}">Iniciar sesión</a>
+    <a th:href="@{/recuperar}">Recuperar contraseña</a>
+</div>
+
+<div class="hero">
+    <h1>Recuperar contraseña</h1>
+    <p>Actualiza tu contraseña para volver a ingresar al sistema</p>
+</div>
+
+<div class="contenedor-principal">
+    <div class="tarjeta">
+
+        <div class="alerta" th:if="${error}" th:text="${error}">
+            Error
+        </div>
+
+        <form th:action="@{/recuperar}" method="post">
+
+            <div class="grupo-formulario">
+                <label for="email">Correo electrónico registrado</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="nuevaClave">Nueva contraseña</label>
+                <input type="password" id="nuevaClave" name="nuevaClave" required>
+            </div>
+
+            <div class="botones">
+                <button class="boton boton-verde" type="submit">Actualizar contraseña</button>
+                <a class="boton boton-azul" th:href="@{/login}">Volver al login</a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>
