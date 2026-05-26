@@ -3,45 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Listado de Usuarios</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 <body>
 
-<h1>Listado de Usuarios</h1>
+<div class="barra-superior">
+    <a th:href="@{/usuarios}">Inicio</a>
+    <a th:href="@{/usuarios/agregar}">Registrar usuario</a>
+    <a th:href="@{/carreras}">Carreras académicas</a>
+</div>
 
-<a th:href="@{/usuarios/agregar}">Agregar usuario</a>
+<div class="hero">
+    <h1>Listado de Usuarios</h1>
+    <p>Administra los usuarios registrados en el sistema</p>
+</div>
 
-<br><br>
+<div class="contenedor-principal">
+    <div class="tarjeta">
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>Cédula</th>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th>Acciones</th>
-    </tr>
-    </thead>
+        <div class="botones">
+            <a class="boton boton-azul" th:href="@{/usuarios/agregar}">Agregar usuario</a>
+            <a class="boton boton-gris" th:href="@{/carreras}">Ir a carreras académicas</a>
+        </div>
 
-    <tbody>
-    <tr th:each="usuario : ${usuarios}">
-        <td th:text="${usuario.cedula}"></td>
-        <td th:text="${usuario.nombre}"></td>
-        <td th:text="${usuario.email}"></td>
-        <td>
-            <a th:href="@{/usuarios/editar/{cedula}(cedula=${usuario.cedula})}">Editar</a>
-            |
-            <a th:href="@{/usuarios/eliminar/{cedula}(cedula=${usuario.cedula})}"
-               onclick="return confirm('¿Está seguro de eliminar este usuario?')">
-                Eliminar
-            </a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        <div class="tabla-contenedor">
+            <table>
+                <thead>
+                <tr>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
 
-<br>
+                <tbody>
+                <tr th:if="${#lists.isEmpty(usuarios)}">
+                    <td colspan="4">
+                        <div class="vacio">
+                            <h3>No hay usuarios registrados</h3>
+                            <p>Aún no se han agregado usuarios al sistema.</p>
+                        </div>
+                    </td>
+                </tr>
 
-<a th:href="@{/}">Volver al inicio</a>
+                <tr th:each="usuario : ${usuarios}">
+                    <td th:text="${usuario.cedula}"></td>
+                    <td th:text="${usuario.nombre}"></td>
+                    <td th:text="${usuario.email}"></td>
+                    <td>
+                        <div class="acciones">
+                            <a class="boton boton-verde"
+                               th:href="@{/usuarios/editar/{cedula}(cedula=${usuario.cedula})}">
+                                Editar
+                            </a>
+
+                            <a class="boton boton-rojo"
+                               th:href="@{/usuarios/eliminar/{cedula}(cedula=${usuario.cedula})}"
+                               onclick="return confirm('¿Está seguro de eliminar este usuario?')">
+                                Eliminar
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>

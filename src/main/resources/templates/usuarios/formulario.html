@@ -3,33 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulario de Usuario</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 <body>
 
-<h1>Formulario de Usuario</h1>
+<div class="barra-superior">
+    <a th:href="@{/usuarios}">Inicio</a>
+    <a th:href="@{/usuarios/agregar}">Registrar usuario</a>
+    <a th:href="@{/carreras}">Carreras académicas</a>
+</div>
 
-<form th:action="@{/usuarios/guardar}" th:object="${usuario}" method="post">
+<div class="hero">
+    <h1>Formulario de Usuario</h1>
+    <p>Accede y administra la información del usuario</p>
+</div>
 
-    <label for="cedula">Cédula:</label>
-    <input type="text" id="cedula" th:field="*{cedula}" required>
-    <br><br>
+<div class="contenedor-principal">
+    <div class="tarjeta">
 
-    <label for="clave">Clave:</label>
-    <input type="text" id="clave" th:field="*{clave}" required>
-    <br><br>
+        <div class="alerta">
+            Complete correctamente la información del usuario.
+        </div>
 
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" th:field="*{nombre}" required>
-    <br><br>
+        <form th:action="@{/usuarios/guardar}" th:object="${usuario}" method="post">
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" th:field="*{email}" required>
-    <br><br>
+            <div class="grupo-formulario">
+                <label for="cedula">Cédula</label>
+                <input type="text" id="cedula" th:field="*{cedula}" required>
+            </div>
 
-    <button type="submit">Guardar</button>
-    <a th:href="@{/usuarios}">Cancelar</a>
+            <div class="grupo-formulario">
+                <label for="clave">Contraseña</label>
+                <input type="text" id="clave" th:field="*{clave}" required>
+            </div>
 
-</form>
+            <div class="grupo-formulario">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" th:field="*{nombre}" required>
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" th:field="*{email}" required>
+            </div>
+
+            <div class="botones">
+                <button class="boton boton-azul" type="submit">Guardar</button>
+                <a class="boton boton-verde" th:href="@{/usuarios}">Volver al listado</a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
 
 </body>
 </html>
