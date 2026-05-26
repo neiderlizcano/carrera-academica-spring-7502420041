@@ -3,66 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulario de Carrera Académica</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 <body>
 
-<h1>Formulario de Carrera Académica</h1>
+<div class="barra-superior">
+    <a th:href="@{/usuarios}">Usuarios</a>
+    <a th:href="@{/carreras}">Carreras académicas</a>
+    <a th:href="@{/carreras/agregar}">Registrar carrera</a>
+</div>
 
-<form th:action="@{/carreras/guardar}" th:object="${carrera}" method="post">
+<div class="hero">
+    <h1>Formulario de Carrera Académica</h1>
+    <p>Registra o actualiza la información del programa académico</p>
+</div>
 
-    <input type="hidden" th:field="*{id}">
+<div class="contenedor-principal">
+    <div class="tarjeta">
 
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" th:field="*{nombre}" required>
-    <br><br>
+        <div class="alerta">
+            Complete todos los datos requeridos de la carrera académica.
+        </div>
 
-    <label for="numCreditos">Número de créditos:</label>
-    <input type="number" id="numCreditos" th:field="*{numCreditos}" required>
-    <br><br>
+        <form th:action="@{/carreras/guardar}" th:object="${carrera}" method="post">
 
-    <label for="numAsignaturas">Número de asignaturas:</label>
-    <input type="number" id="numAsignaturas" th:field="*{numAsignaturas}" required>
-    <br><br>
+            <input type="hidden" th:field="*{id}">
 
-    <label for="numSemestres">Número de semestres:</label>
-    <input type="number" id="numSemestres" th:field="*{numSemestres}" required>
-    <br><br>
+            <div class="grupo-formulario">
+                <label for="nombre">Nombre de la carrera</label>
+                <input type="text" id="nombre" th:field="*{nombre}" required>
+            </div>
 
-    <label for="nivelFormacion">Nivel de formación:</label>
-    <input type="text" id="nivelFormacion" th:field="*{nivelFormacion}" required>
-    <br><br>
+            <div class="grupo-formulario">
+                <label for="numCreditos">Número de créditos</label>
+                <input type="number" id="numCreditos" th:field="*{numCreditos}" required>
+            </div>
 
-    <label for="titulo">Título otorgado:</label>
-    <input type="text" id="titulo" th:field="*{titulo}" required>
-    <br><br>
+            <div class="grupo-formulario">
+                <label for="numAsignaturas">Número de asignaturas</label>
+                <input type="number" id="numAsignaturas" th:field="*{numAsignaturas}" required>
+            </div>
 
-    <label for="valorSemestre">Valor del semestre:</label>
-    <input type="number" step="0.01" id="valorSemestre" th:field="*{valorSemestre}" required>
-    <br><br>
+            <div class="grupo-formulario">
+                <label for="numSemestres">Número de semestres</label>
+                <input type="number" id="numSemestres" th:field="*{numSemestres}" required>
+            </div>
 
-    <label for="universidad">Universidad:</label>
-    <input type="text" id="universidad" th:field="*{universidad}" required>
-    <br><br>
+            <div class="grupo-formulario">
+                <label for="nivelFormacion">Nivel de formación</label>
+                <input type="text" id="nivelFormacion" th:field="*{nivelFormacion}" required>
+            </div>
 
-    <label for="esAcreditada">¿Es acreditada?</label>
-    <select id="esAcreditada" th:field="*{esAcreditada}" required>
-        <option th:value="true">Sí</option>
-        <option th:value="false">No</option>
-    </select>
-    <br><br>
+            <div class="grupo-formulario">
+                <label for="titulo">Título otorgado</label>
+                <input type="text" id="titulo" th:field="*{titulo}" required>
+            </div>
 
-    <label for="perfiles">Perfiles:</label>
-    <textarea id="perfiles" th:field="*{perfiles}" rows="4" cols="40"></textarea>
-    <br><br>
+            <div class="grupo-formulario">
+                <label for="valorSemestre">Valor del semestre</label>
+                <input type="number" step="0.01" id="valorSemestre" th:field="*{valorSemestre}" required>
+            </div>
 
-    <label for="areaConocimiento">Área de conocimiento:</label>
-    <input type="text" id="areaConocimiento" th:field="*{areaConocimiento}" required>
-    <br><br>
+            <div class="grupo-formulario">
+                <label for="universidad">Universidad</label>
+                <input type="text" id="universidad" th:field="*{universidad}" required>
+            </div>
 
-    <button type="submit">Guardar</button>
-    <a th:href="@{/carreras}">Cancelar</a>
+            <div class="grupo-formulario">
+                <label for="esAcreditada">¿Es acreditada?</label>
+                <select id="esAcreditada" th:field="*{esAcreditada}" required>
+                    <option th:value="true">Sí</option>
+                    <option th:value="false">No</option>
+                </select>
+            </div>
 
-</form>
+            <div class="grupo-formulario">
+                <label for="perfiles">Perfiles</label>
+                <textarea id="perfiles" th:field="*{perfiles}" rows="4"></textarea>
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="areaConocimiento">Área de conocimiento</label>
+                <input type="text" id="areaConocimiento" th:field="*{areaConocimiento}" required>
+            </div>
+
+            <div class="botones">
+                <button class="boton boton-azul" type="submit">Guardar</button>
+                <a class="boton boton-verde" th:href="@{/carreras}">Volver al listado</a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
 
 </body>
 </html>

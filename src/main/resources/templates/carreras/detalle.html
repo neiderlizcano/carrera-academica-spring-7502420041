@@ -3,29 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <title>Detalle de Carrera Académica</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 <body>
 
-<h1>Detalle de Carrera Académica</h1>
+<div class="barra-superior">
+    <a th:href="@{/usuarios}">Usuarios</a>
+    <a th:href="@{/carreras}">Carreras académicas</a>
+    <a th:href="@{/carreras/agregar}">Registrar carrera</a>
+</div>
 
-<p><strong>ID:</strong> <span th:text="${carrera.id}"></span></p>
-<p><strong>Nombre:</strong> <span th:text="${carrera.nombre}"></span></p>
-<p><strong>Número de créditos:</strong> <span th:text="${carrera.numCreditos}"></span></p>
-<p><strong>Número de asignaturas:</strong> <span th:text="${carrera.numAsignaturas}"></span></p>
-<p><strong>Número de semestres:</strong> <span th:text="${carrera.numSemestres}"></span></p>
-<p><strong>Nivel de formación:</strong> <span th:text="${carrera.nivelFormacion}"></span></p>
-<p><strong>Título otorgado:</strong> <span th:text="${carrera.titulo}"></span></p>
-<p><strong>Valor del semestre:</strong> <span th:text="${carrera.valorSemestre}"></span></p>
-<p><strong>Universidad:</strong> <span th:text="${carrera.universidad}"></span></p>
-<p><strong>Acreditada:</strong> <span th:text="${carrera.esAcreditada ? 'Sí' : 'No'}"></span></p>
-<p><strong>Perfiles:</strong> <span th:text="${carrera.perfiles}"></span></p>
-<p><strong>Área de conocimiento:</strong> <span th:text="${carrera.areaConocimiento}"></span></p>
+<div class="hero">
+    <h1>Detalle de Carrera Académica</h1>
+    <p>Consulta completa de la información del programa académico</p>
+</div>
 
-<br>
+<div class="contenedor-principal">
+    <div class="tarjeta">
 
-<a th:href="@{/carreras/editar/{id}(id=${carrera.id})}">Editar</a>
-|
-<a th:href="@{/carreras}">Volver al listado</a>
+        <div class="detalle-grid">
+
+            <div class="detalle-item">
+                <h4>ID</h4>
+                <p th:text="${carrera.id}"></p>
+            </div>
+
+            <div class="detalle-item">
+                <h4>Nombre</h4>
+                <p th:text="${carrera.nombre}"></p>
+            </div>
+
+            <div class="detalle-item">
+                <h4>Número de créditos</h4>
+                <p th:text="${carrera.numCreditos}"></p>
+            </div>
+
+            <div class="detalle-item">
+                <h4>Número de asignaturas</h4>
+                <p th:text="${carrera.numAsignaturas}"></p>
+            </div>
+
+            <div class="detalle-item">
+                <h4>Número de semestres</h4>
+                <p th:text="${carrera.numSemestres}"></p>
+            </div>
+
+            <div class="detalle-item">
+                <h4>Nivel de formación</h4>
+                <p th:text="${carrera.nivelFormacion}"></p>
+            </div>
+
+            <div class="detalle-item">
+                <h4>Título otorgado</h4>
+                <p th:text="${carrera.titulo}"></p>
+            </div>
+
+            <div class="detalle-item">
+                <h4>Valor del semestre</h4>
+                <p th:text="${carrera.valorSemestre}"></p>
+            </div>
+
+            <div class="detalle-item">
+                <h4>Universidad</h4>
+                <p th:text="${carrera.universidad}"></p>
+            </div>
+
+            <div class="detalle-item">
+                <h4>Acreditada</h4>
+                <p th:text="${carrera.esAcreditada ? 'Sí' : 'No'}"></p>
+            </div>
+
+            <div class="detalle-item">
+                <h4>Área de conocimiento</h4>
+                <p th:text="${carrera.areaConocimiento}"></p>
+            </div>
+
+            <div class="detalle-item">
+                <h4>Perfiles</h4>
+                <p th:text="${carrera.perfiles}"></p>
+            </div>
+
+        </div>
+
+        <div class="botones">
+            <a class="boton boton-azul" th:href="@{/carreras/editar/{id}(id=${carrera.id})}">Editar</a>
+            <a class="boton boton-verde" th:href="@{/carreras}">Volver al listado</a>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>

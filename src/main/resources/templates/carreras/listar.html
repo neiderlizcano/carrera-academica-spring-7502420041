@@ -3,54 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <title>Listado de Carreras Académicas</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 <body>
 
-<h1>Listado de Carreras Académicas</h1>
+<div class="barra-superior">
+    <a th:href="@{/usuarios}">Usuarios</a>
+    <a th:href="@{/carreras}">Carreras académicas</a>
+    <a th:href="@{/carreras/agregar}">Registrar carrera</a>
+</div>
 
-<a th:href="@{/carreras/agregar}">Agregar carrera académica</a>
-<br><br>
+<div class="hero">
+    <h1>Listado de Carreras Académicas</h1>
+    <p>Administra los programas académicos registrados en el sistema</p>
+</div>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Nivel de formación</th>
-        <th>Título</th>
-        <th>Universidad</th>
-        <th>Valor semestre</th>
-        <th>Acreditada</th>
-        <th>Acciones</th>
-    </tr>
-    </thead>
+<div class="contenedor-principal">
+    <div class="tarjeta">
 
-    <tbody>
-    <tr th:each="carrera : ${carreras}">
-        <td th:text="${carrera.id}"></td>
-        <td th:text="${carrera.nombre}"></td>
-        <td th:text="${carrera.nivelFormacion}"></td>
-        <td th:text="${carrera.titulo}"></td>
-        <td th:text="${carrera.universidad}"></td>
-        <td th:text="${carrera.valorSemestre}"></td>
-        <td th:text="${carrera.esAcreditada ? 'Sí' : 'No'}"></td>
-        <td>
-            <a th:href="@{/carreras/ver/{id}(id=${carrera.id})}">Ver</a>
-            |
-            <a th:href="@{/carreras/editar/{id}(id=${carrera.id})}">Editar</a>
-            |
-            <a th:href="@{/carreras/eliminar/{id}(id=${carrera.id})}"
-               onclick="return confirm('¿Está seguro de eliminar esta carrera académica?')">
-                Eliminar
-            </a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        <div class="botones">
+            <a class="boton boton-azul" th:href="@{/carreras/agregar}">Agregar carrera académica</a>
+            <a class="boton boton-gris" th:href="@{/usuarios}">Ir a usuarios</a>
+        </div>
 
-<br>
+        <div class="tabla-contenedor">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Nivel</th>
+                    <th>Título</th>
+                    <th>Universidad</th>
+                    <th>Valor semestre</th>
+                    <th>Acreditada</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
 
-<a th:href="@{/usuarios}">Ir a usuarios</a>
+                <tbody>
+                <tr th:if="${#lists.isEmpty(carreras)}">
+                    <td colspan="8">
+                        <div class="vacio">
+                            <h3>No hay carreras académicas registradas</h3>
+                            <p>Aún no se han agregado programas académicos al sistema.</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr th:each="carrera : ${carreras}">
+                    <td th:text="${carrera.id}"></td>
+                    <td th:text="${carrera.nombre}"></td>
+                    <td th:text="${carrera.nivelFormacion}"></td>
+                    <td th:text="${carrera.titulo}"></td>
+                    <td th:text="${carrera.universidad}"></td>
+                    <td th:text="${carrera.valorSemestre}"></td>
+                    <td th:text="${carrera.esAcreditada ? 'Sí' : 'No'}"></td>
+                    <td>
+                        <div class="acciones">
+                            <a class="boton boton-verde"
+                               th:href="@{/carreras/ver/{id}(id=${carrera.id})}">
+                                Ver
+                            </a>
+
+                            <a class="boton boton-azul"
+                               th:href="@{/carreras/editar/{id}(id=${carrera.id})}">
+                                Editar
+                            </a>
+
+                            <a class="boton boton-rojo"
+                               th:href="@{/carreras/eliminar/{id}(id=${carrera.id})}"
+                               onclick="return confirm('¿Está seguro de eliminar esta carrera académica?')">
+                                Eliminar
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>
