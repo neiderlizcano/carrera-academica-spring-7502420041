@@ -1,5 +1,6 @@
 package com.neider.carreraacademica.controladores;
 
+import com.neider.carreraacademica.servicio.CorreoServicio;
 import com.neider.carreraacademica.modelo.Usuario;
 import com.neider.carreraacademica.servicio.IUsuarioServicio;
 import jakarta.servlet.http.HttpSession;
@@ -13,9 +14,11 @@ import java.util.Optional;
 public class AuthControlador {
 
     private final IUsuarioServicio usuarioServicio;
+    private final CorreoServicio correoServicio;
 
-    public AuthControlador(IUsuarioServicio usuarioServicio) {
+    public AuthControlador(IUsuarioServicio usuarioServicio, CorreoServicio correoServicio) {
         this.usuarioServicio = usuarioServicio;
+        this.correoServicio = correoServicio;
     }
 
     @GetMapping("/login")
@@ -58,9 +61,7 @@ public class AuthControlador {
     }
 
     @PostMapping("/recuperar")
-    public String recuperarContrasena(@RequestParam String email,
-                                      @RequestParam String nuevaClave,
-                                      Model model) {
+    public String recuperarContrasena(@RequestParam String email, Model model) {
 
         Optional<Usuario> usuarioEncontrado = usuarioServicio.buscarUsuarioPorEmail(email);
 
@@ -69,8 +70,17 @@ public class AuthControlador {
             return "auth/recuperar";
         }
 
-        usuarioServicio.actualizarClave(email, nuevaClave);
-        model.addAttribute("mensaje", "Contraseña actualizada correctamente. Ya puedes iniciar sesión.");
+        String nuevaClaveTemporal = generarClaveTemporal();
+
+        usuarioServicio.actualizarClave(email, nuevaClaveTemporal);
+        correoServicio.enviarCorreoRecuperacion(email, nuevaClaveTemporal);
+
+        model.addAttribute("mensaje", "Se envió una nueva contraseña temporal al correo registrado.");
         return "auth/login";
+    }
+
+    private String generarClaveTemporal() {
+        int numero = (int) (Math.random() * 900000) + 100000;
+        return "Temp" + numero;
     }
 }

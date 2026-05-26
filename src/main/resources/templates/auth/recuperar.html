@@ -14,14 +14,18 @@
 
 <div class="hero">
     <h1>Recuperar contraseña</h1>
-    <p>Actualiza tu contraseña para volver a ingresar al sistema</p>
+    <p>Recibe una contraseña temporal en tu correo registrado</p>
 </div>
 
 <div class="contenedor-principal">
     <div class="tarjeta">
 
         <div class="alerta" th:if="${error}" th:text="${error}">
-            Error
+            Error.
+        </div>
+
+        <div class="alerta-exito" th:if="${mensaje}" th:text="${mensaje}">
+            Mensaje.
         </div>
 
         <form th:action="@{/recuperar}" method="post">
@@ -31,14 +35,14 @@
                 <input type="email" id="email" name="email" required>
             </div>
 
-            <div class="grupo-formulario">
-                <label for="nuevaClave">Nueva contraseña</label>
-                <input type="password" id="nuevaClave" name="nuevaClave" required>
-            </div>
-
             <div class="botones">
-                <button class="boton boton-verde" type="submit">Actualizar contraseña</button>
-                <a class="boton boton-azul" th:href="@{/login}">Volver al login</a>
+                <button class="boton boton-verde" type="submit">
+                    Enviar contraseña temporal
+                </button>
+
+                <a class="boton boton-azul" th:href="@{/login}">
+                    Volver al login
+                </a>
             </div>
 
         </form>

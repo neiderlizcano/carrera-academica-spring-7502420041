@@ -24,6 +24,10 @@
             Correo o contraseña incorrectos.
         </div>
 
+        <div class="alerta-exito" th:if="${mensaje}" th:text="${mensaje}">
+            Mensaje de éxito.
+        </div>
+
         <form th:action="@{/login}" method="post">
 
             <div class="grupo-formulario">

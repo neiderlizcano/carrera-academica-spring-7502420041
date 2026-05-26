@@ -291,4 +291,13 @@ tbody tr:hover {
         width: 100%;
         text-align: center;
     }
+    .alerta-exito {
+        background: #d1fae5;
+        border: 1px solid #86efac;
+        color: #166534;
+        border-radius: 14px;
+        padding: 18px;
+        font-weight: 700;
+        margin-bottom: 24px;
+    }
 }
